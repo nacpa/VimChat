@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "565054698115",
+    "project_id": "vimchat-89811",
+    "storage_bucket": "vimchat-89811.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565054698115:android:9ee955a3a7eda700cce1b6",
+        "android_client_info": {
+          "package_name": "com.nacpa.chatvim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565054698115-531kdkvu8uaihbnps479bbl9u9afv7f7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU_PRnpAbTk0aTD337R7QqomguFCjhxTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565054698115-531kdkvu8uaihbnps479bbl9u9afv7f7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
