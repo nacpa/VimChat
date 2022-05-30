@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   simple_animations: ^1.3.3
+  get: ^4.6.5
 
 
   flutter:

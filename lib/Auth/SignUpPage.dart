@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-import 'Opacity.dart';
+import '../consts/Opacity.dart';
 
 class SignUpPage extends StatelessWidget {
   final _auth = FirebaseAuth.instance;

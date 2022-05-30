@@ -1,12 +1,11 @@
-import 'package:firebase_core/firebase_core.dart';
+ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'welcome_screen.dart';
-import 'login_screen.dart';
-import 'background.dart';
-import 'registration_screen.dart';
-import 'chat_screen.dart';
-import 'LoginPage.dart';
-import 'SignUpPage.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'Screens/background.dart';
+import 'Auth/registration_screen.dart';
+import 'Screens/chat_screen.dart';
+import 'Auth/LoginPage.dart';
+import 'Auth/SignUpPage.dart';
 
 
 void main() async {
@@ -20,11 +19,11 @@ class FlashChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         home: Background(),
         //initialRoute: 'WelcomeScreen',
         routes: {
-          'WelcomeScreen': (context) => WelcomeScreen(),
+          'WelcomeScreen': (context) => Background(),
           'LoginScreen': (context) => LoginPage(),
           'Registrationscreen': (context) => SignUpPage(),
           'ChatScreen': (context) => ChatScreen()

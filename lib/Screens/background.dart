@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class Background extends StatelessWidget {
@@ -21,18 +22,17 @@ class Background extends StatelessWidget {
                       child: Image.asset('images/logo.png'),
                       height: 150,
                     ),
-                    TypewriterAnimatedTextKit(
+                    TypewriterAnimatedTextKit(repeatForever: false,
                       text: ['ViMcHaT'],
                       textStyle: TextStyle(
                         color: Colors.blueGrey,
-                        fontSize: 50,
+                        fontSize: 45,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
                   ],
                 ),
               ),
-
               Positioned(top: 225,right: 70,child: Container(height: 100,width: 100,
                 decoration: BoxDecoration(color: Colors.deepOrangeAccent,borderRadius: BorderRadius.circular(45),image: DecorationImage(image: AssetImage('assets/images/clock.png'))),
 
@@ -44,11 +44,9 @@ class Background extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
-
                 Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: GestureDetector( onTap: (){ Navigator.pushNamed(context, 'LoginScreen');
+                  padding:  EdgeInsets.all(5.0),
+                  child: GestureDetector( onTap: (){ Get.toNamed('LoginScreen',);
 
                   },
                     child: Container(height: 60,width:250,decoration: BoxDecoration(gradient: LinearGradient(
@@ -59,8 +57,8 @@ class Background extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: GestureDetector(onTap: ()=> Navigator.pushNamed(context, 'Registrationscreen'),
+                  padding:  EdgeInsets.all(5.0),
+                  child: GestureDetector(onTap: ()=>Get.toNamed('Registrationscreen') ,
                     child: Container(height: 60,width:250,decoration: BoxDecoration(gradient: LinearGradient(
                         colors: orangeGradients,
                         begin: Alignment.topLeft,
@@ -85,6 +83,18 @@ class Background extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const List<Color> orangeGradients = [

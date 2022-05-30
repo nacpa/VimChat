@@ -1,9 +1,11 @@
 
+import 'package:chatvim/Screens/chat_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'Opacity.dart';
+import '../consts/Opacity.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -11,6 +13,24 @@ class LoginPage extends StatelessWidget {
   late String Email;
   late String Password;
   bool Spinner = false;
+
+
+  void Signin(){
+    if (Email.isEmpty) {
+      Get.snackbar("Email can't be Empty", "please Fill valid mail");
+    }else if(Password.isEmpty){
+      Get.snackbar("PassWord can't be Empty", "please Fill valid Password");
+
+    }else if(!GetUtils.isEmail(Email)){      Get.snackbar("Wrong Email ", "please Fill valid mail");
+    }else{
+      _auth.signInWithEmailAndPassword(email: Email, password: Password).then((value) => Get.offNamed('ChatScreen')).onError((error, stackTrace) {
+        Get.snackbar(error.toString(), "Error");
+
+      });
+    }
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,16 +147,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 30,),
-                       GestureDetector(onTap: () async {
-                         final LoginUser=await _auth.signInWithEmailAndPassword(email: Email, password: Password);
-                         try{
-                           if(LoginUser!=null){
-                             Navigator.pushNamed(context, 'ChatScreen');
-
-                           }
-                         }catch(e){
-                           print(e);
-                         }
+                       GestureDetector(onTap: ()  {Signin();
                        },
                          child: Container(
                           height: 50,
