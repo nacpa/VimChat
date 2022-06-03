@@ -11,7 +11,7 @@ import 'Auth/SignUpPage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const FlashChat());
+  runApp( FlashChat());
 }
 
 class FlashChat extends StatelessWidget {
@@ -20,6 +20,7 @@ class FlashChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        // home: ChatScreen(),
         home: Background(),
         //initialRoute: 'WelcomeScreen',
         routes: {

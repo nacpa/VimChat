@@ -71,59 +71,56 @@ class _ChatScreenState extends State<ChatScreen> {
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(5.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                child: streamBuilder(),
-              ),
-              Container(
-                decoration: kMessageContainerDecoration,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.blueGrey),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: TextField(
-                          controller: _controller,
-                          onChanged: (value) {
-                            TextMessag = value;
-                            //Do something with the user input.
-                          },
-                          decoration: kMessageTextFieldDecoration,
-                          cursorColor: Colors.orange,
-                        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              child: streamBuilder(),
+            ),
+            Container(
+              decoration: kMessageContainerDecoration,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.blueGrey),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: TextField(
+                        controller: _controller,
+                        onChanged: (value) {
+                          TextMessag = value;
+                          //Do something with the user input.
+                        },
+                        decoration: kMessageTextFieldDecoration,
+                        cursorColor: Colors.orange,
                       ),
-                      GestureDetector(
-                          onTap: () {
-                            _controller.clear();
-                            _FireData.collection('Text').add({
-                              ''
-                                  'Text': TextMessag,
-                              'User': loggedInUser.email,
-                              'timestamp': FieldValue.serverTimestamp(),
-                            });
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.send,
-                              color: Colors.orange,
-                              size: 36,
-                            ),
-                          ))
-                    ],
-                  ),
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          _controller.clear();
+                          _FireData.collection('Text').add({
+                            ''
+                                'Text': TextMessag,
+                            'User': loggedInUser.email,
+                            'timestamp': FieldValue.serverTimestamp(),
+                          });
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.send,
+                            color: Colors.orange,
+                            size: 36,
+                          ),
+                        ))
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -202,11 +199,9 @@ class streamBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _FireData.collection('Chat')
-          .orderBy('timestamp', descending: true)
-          .snapshots(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        final Messages = snapshot.data.docs;
+      stream: _FireData.collection('Chat').orderBy('timestamp', descending: true).snapshots()!,
+      builder: ( context, AsyncSnapshot snapshot) {
+        final Messages = snapshot.data!.docs!;
         List<BubbleText> MessagesWeigets = [];
         for (var message in Messages) {
           final TextMessage = message.data()['Text'];
@@ -219,10 +214,13 @@ class streamBuilder extends StatelessWidget {
             itsMe: currentuser == TextUser,
           );
           MessagesWeigets.add(MessageWeiget);
+          print(MessagesWeigets.toString());
         }
+
         return Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
+          child:
+          Padding(
+            padding:  EdgeInsets.all(2.0),
             child: ListView(
               reverse: true,
               children: MessagesWeigets,
