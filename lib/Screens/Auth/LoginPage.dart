@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../consts/Opacity.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -23,7 +22,7 @@ class LoginPage extends StatelessWidget {
 
     }else if(!GetUtils.isEmail(Email)){      Get.snackbar("Wrong Email ", "please Fill valid mail");
     }else{
-      _auth.signInWithEmailAndPassword(email: Email, password: Password).then((value) => Get.offNamed('ChatScreen')).onError((error, stackTrace) {
+      _auth.signInWithEmailAndPassword(email: Email, password: Password).then((value) => Get.offNamed('StartChat')).onError((error, stackTrace) {
         Get.snackbar(error.toString(), "Error");
 
       });

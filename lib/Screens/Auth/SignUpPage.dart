@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/get_utils/get_utils.dart';
+
+import '../../consts/CustomSnackbar.dart';
+import '../../consts/Opacity.dart';
 
 
-import '../consts/Opacity.dart';
 
 class SignUpPage extends StatelessWidget {
   final _auth = FirebaseAuth.instance;
@@ -11,6 +14,49 @@ class SignUpPage extends StatelessWidget {
   late String Password;
   @override
   Widget build(BuildContext context) {
+    var PhoneController = TextEditingController();
+    var PassWordcontroller = TextEditingController();
+    var Emailcontroller = TextEditingController();
+    var Namecontroller = TextEditingController();
+
+    void _Registration() {
+      String Email = Emailcontroller.text.trim();
+      String Password = PassWordcontroller.text.trim();
+      String Name = Namecontroller.text.trim();
+      String MobileNo = PhoneController.text.trim();
+
+      if (Email.isEmpty) {
+        CustomSnackBar("Email can't be Empty", "please Fill valid mail",
+            Colors.red, Colors.white);
+      } else if (Password.isEmpty) {
+        CustomSnackBar("Password can't be Empty", "please Fill valid Password",
+            Colors.red, Colors.white);
+      } else if (Name.isEmpty) {
+        CustomSnackBar("Name can't be Empty", "please Fill your name",
+            Colors.red, Colors.white);
+      } else if (MobileNo.isEmpty) {
+        CustomSnackBar("PhoneNo can't be Empty", "please Fill valid PhoneNo",
+            Colors.red, Colors.white);
+      } else if (!GetUtils.isEmail(Email)) {
+        CustomSnackBar(
+            "Wrong Email ", "please Fill valid mail", Colors.red, Colors.white);
+      } else {
+        _auth
+            .createUserWithEmailAndPassword(email: Email, password: Password)
+            .then((value) {
+          _auth.currentUser?.updateProfile(
+            displayName: Name,
+          );
+          _auth.currentUser?.linkWithPhoneNumber(MobileNo);
+
+          Navigator.pushNamed(context, 'LoginScreen',);
+        });
+
+        CustomSnackBar(
+            "Welcome", "Signup Sucessfully", Colors.green, Colors.white);
+      }
+    }
+
     return Expanded(
       child: MaterialApp(
         home: SafeArea(
@@ -100,7 +146,6 @@ class SignUpPage extends StatelessWidget {
                       padding: EdgeInsets.all(30.0),
                       child: Column(
                         children: <Widget>[
-
                               Container(
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
@@ -126,6 +171,7 @@ class SignUpPage extends StatelessWidget {
                                                   color:
                                                       Colors.deepPurple))),
                                       child: TextField(
+                                        controller: Namecontroller,
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
                                             hintText: "Name",
@@ -140,9 +186,7 @@ class SignUpPage extends StatelessWidget {
                                               bottom: BorderSide(
                                                   color:
                                                       Colors.deepPurple))),
-                                      child: TextField( onChanged: (value){
-                                        Email=value;
-                                      },
+                                      child: TextField( controller: Emailcontroller,
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
                                             hintText: "Email",
@@ -157,7 +201,7 @@ class SignUpPage extends StatelessWidget {
                                               bottom: BorderSide(
                                                   color:
                                                       Colors.deepPurple))),
-                                      child: TextField(
+                                      child: TextField(controller: PassWordcontroller,
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
                                             hintText: "Password",
@@ -167,10 +211,10 @@ class SignUpPage extends StatelessWidget {
                                     ),
                                     Container(
                                       padding: EdgeInsets.all(8.0),
-                                      child: TextField( onChanged: (value){Password=value;},
+                                      child: TextField( controller: PhoneController,
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
-                                            hintText: "Confirm Password",
+                                            hintText: "Phone No",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[800])),
                                       ),
@@ -182,21 +226,8 @@ class SignUpPage extends StatelessWidget {
                             height: 30,
                           ),
 
-                              GestureDetector(onTap: ()async{
-                                final NewUser=await _auth.createUserWithEmailAndPassword(email: Email, password: Password);
-                                try{
-                                  if(NewUser!=null){
-                                    Navigator.pushNamed(context, 'LoginScreen');
-                                  }
-                                }catch(e){
-                                  print(e);
-                                  final snackBAr = SnackBar(
-                                      content: Text(e.toString()),
-                                      action: SnackBarAction(
-                                        label: 'Undo',
-                                        onPressed: () {},
-                                      ));
-                                }
+                              GestureDetector(onTap: (){
+                                _Registration();
                               },
                                 child: Container(
                                   height: 50,
