@@ -22,6 +22,7 @@ class streamBuilder extends StatelessWidget {
         for (var message in Messages) {
           final TextMessage = message.data()['Text'];
           final TextUser = message.data()['User'];
+          final Texttime = message.data()['timestamp'];
           final currentuser = loggedInUser.displayName;
           if (currentuser == TextUser) {
             print("yes");
@@ -29,15 +30,17 @@ class streamBuilder extends StatelessWidget {
           final MessageWeiget = BubbleText(
             TextMessage: TextMessage,
             TextUser: TextUser,
-            itsMe: currentuser==TextUser ,
+            itsMe: currentuser==TextUser,
+
+            TextTime:Texttime==null? Timestamp.now() :Texttime,
 
 
           );
           MessagesWeigets.add(MessageWeiget);
         }
-        return  Container(
+        return  Container(decoration: BoxDecoration(image:DecorationImage(image: AssetImage("assets/images/chatBackground.jpg"),fit: BoxFit.fill)),
           child: Padding(
-            padding:  EdgeInsets.all(2.0),
+            padding:  EdgeInsets.all(0),
             child: ListView(
               reverse: true,
               children: MessagesWeigets,

@@ -53,7 +53,8 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
+      appBar:
+      AppBar(
         leading: null,
         actions: <Widget>[
           IconButton(
@@ -69,76 +70,74 @@ class _ChatScreenState extends State<ChatScreen> {
                 Navigator.pop(context);
               }),
         ],
-        title: const Text('⚡️Chat'),
-        backgroundColor: Colors.lightBlueAccent,
+        title:  Text('⚡️Chat'),
+        backgroundColor: Colors.blueGrey.shade800,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(2.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  height: size.height * 0.84,
-                  child: streamBuilder(),
-                ),
-                Container(
-                  height: size.height * 0.06,
-                  width: double.maxFinite,
-                  color: Colors.grey.shade50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.blueGrey,
-                            borderRadius: BorderRadius.circular(50)),
-                        height: 50,
-                        width: 350,
-                        child: TextField(
-                          controller: _controller,
-                          onChanged: (value) {
-                            TextMessag = value==null ?"": value;
-                            //Do something with the user input.
-                          },
-                          decoration: kMessageTextFieldDecoration,
-                          cursorColor: Colors.orange,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          if(TextMessag!=""){  _controller.clear();
-                            _FireData.collection('Text').add({
-                            'Text': TextMessag,
-                            'User': loggedInUser.displayName ?? loggedInUser.email,
-                            'timestamp': FieldValue.serverTimestamp(),
-                          }
-                          );
-                          TextMessag="";}else{TextMessag="";}
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                height: size.height * 0.84,
+                child: streamBuilder(),
+              ),
+              Container(decoration: BoxDecoration( color: Colors.grey.shade50,image: DecorationImage(image: AssetImage('assets/images/chatBottomWallpaper.jpg'),fit: BoxFit.fill)),
+                height: size.height * 0.06,
+                width: double.maxFinite,
 
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blueGrey,
+                          borderRadius: BorderRadius.circular(50)),
+                      height: 50,
+                      width: 350,
+                      child: TextField(style: TextStyle(color: Colors.white,fontSize: 20  ),
+                        controller: _controller,
+                        onChanged: (value) {
+                          TextMessag = value==null ?"": value;
+                          //Do something with the user input.
                         },
-                        child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.blueGrey,
-                                borderRadius: BorderRadius.circular(50)),
-                            height: 50,
-                            width: 50,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.send,
-                                color: Colors.orange,
-                                size: 36,
-                              ),
-                            )),
+                        decoration: kMessageTextFieldDecoration,
+                        cursorColor: Colors.orange,
+
                       ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if(TextMessag!=""){  _controller.clear();
+                          _FireData.collection('Text').add({
+                          'Text': TextMessag,
+                          'User': loggedInUser.displayName ?? loggedInUser.email,
+                          'timestamp': FieldValue.serverTimestamp(),
+                        }
+                        );
+                        TextMessag="";}else{TextMessag="";}
+
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.blueGrey,
+                              borderRadius: BorderRadius.circular(50)),
+                          height: 50,
+                          width: 50,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.send,
+                              color: Colors.orange,
+                              size: 36,
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
