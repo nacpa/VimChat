@@ -1,4 +1,5 @@
 import 'package:chatvim/Screens/chat_screen.dart';
+import 'package:chatvim/Streams/UserInfoStream.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class StartChat extends StatelessWidget {
             Lottie.network(
                 "https://assets9.lottiefiles.com/packages/lf20_fjv8qxqn.json"),
             GestureDetector( onTap: (){
-              Get.to(ChatScreen());
+              Get.to(UserList());
             },
               child: Container(
                 height: 60,

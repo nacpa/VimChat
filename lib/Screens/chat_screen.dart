@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import 'constants.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,16 +10,23 @@ import '../Streams/ChatStream.dart';
 import '../consts/constants.dart';
 
 late User loggedInUser;
-
 final _FireData = FirebaseFirestore.instance;
-
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  ChatScreen({required this.ReceiverName});
+  late String  ReceiverName;
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _ChatScreenState createState() => _ChatScreenState(ReceiverName: ReceiverName);
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+
+   _ChatScreenState({required this.ReceiverName});
+
+  late String  ReceiverName;
+
+
+
+
   final _controller = TextEditingController();
   final _auth = FirebaseAuth.instance;
   late String TextMessag;
@@ -64,13 +71,15 @@ class _ChatScreenState extends State<ChatScreen> {
                     content: Text('LOGOUT SUCESSFULLY'),
                     action: SnackBarAction(
                       label: 'Undo',
-                      onPressed: () {},
+                      onPressed: () {
+
+                      },
                     ));
                 _auth.signOut();
-                Navigator.pop(context);
+                Get.offNamed("LoginScreen");
               }),
         ],
-        title:  Text('⚡️Chat'),
+        title:  Text(ReceiverName),
         backgroundColor: Colors.blueGrey.shade800,
       ),
       body: SafeArea(
@@ -81,7 +90,7 @@ class _ChatScreenState extends State<ChatScreen> {
             children: <Widget>[
               Container(
                 height: size.height * 0.84,
-                child: streamBuilder(),
+                child: streamBuilder(ReceiverName: ReceiverName,),
               ),
               Container(decoration: BoxDecoration( color: Colors.grey.shade50,image: DecorationImage(image: AssetImage('assets/images/chatBottomWallpaper.jpg'),fit: BoxFit.fill)),
                 height: size.height * 0.06,
@@ -114,6 +123,8 @@ class _ChatScreenState extends State<ChatScreen> {
                           'Text': TextMessag,
                           'User': loggedInUser.displayName ?? loggedInUser.email,
                           'timestamp': FieldValue.serverTimestamp(),
+                            "Reciver" : ReceiverName
+                            // 'receiver':
                         }
                         );
                         TextMessag="";}else{TextMessag="";}
