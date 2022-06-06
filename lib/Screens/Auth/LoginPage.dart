@@ -1,5 +1,6 @@
 
 import 'package:chatvim/Screens/chat_screen.dart';
+import 'package:chatvim/Streams/UserInfoStream.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,15 +15,20 @@ class LoginPage extends StatelessWidget {
   bool Spinner = false;
 
 
-  void Signin(){
+  void Signin() async {
     if (Email.isEmpty) {
       Get.snackbar("Email can't be Empty", "please Fill valid mail");
     }else if(Password.isEmpty){
       Get.snackbar("PassWord can't be Empty", "please Fill valid Password");
 
     }else if(!GetUtils.isEmail(Email)){      Get.snackbar("Wrong Email ", "please Fill valid mail");
-    }else{
-      _auth.signInWithEmailAndPassword(email: Email, password: Password).then((value) => Get.offNamed('StartChat')).onError((error, stackTrace) {
+    }
+    else{
+      _auth.signInWithEmailAndPassword(email: Email, password: Password).then(
+              (value) async {
+
+
+          Get.offNamed('StartChat');}).onError((error, stackTrace) {
         Get.snackbar(error.toString(), "Error");
 
       });

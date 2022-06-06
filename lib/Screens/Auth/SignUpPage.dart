@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/get_utils/get_utils.dart';
 
+import '../../Streams/UserInfoStream.dart';
 import '../../consts/CustomSnackbar.dart';
 import '../../consts/Opacity.dart';
 
@@ -18,12 +19,14 @@ class SignUpPage extends StatelessWidget {
     var PassWordcontroller = TextEditingController();
     var Emailcontroller = TextEditingController();
     var Namecontroller = TextEditingController();
+    var Gndercontroller = TextEditingController();
 
     void _Registration() {
       String Email = Emailcontroller.text.trim();
       String Password = PassWordcontroller.text.trim();
       String Name = Namecontroller.text.trim();
       String MobileNo = PhoneController.text.trim();
+      String Gender =Gndercontroller.text.trim();
 
       if (Email.isEmpty) {
         CustomSnackBar("Email can't be Empty", "please Fill valid mail",
@@ -40,14 +43,18 @@ class SignUpPage extends StatelessWidget {
       } else if (!GetUtils.isEmail(Email)) {
         CustomSnackBar(
             "Wrong Email ", "please Fill valid mail", Colors.red, Colors.white);
-      } else {
+      } else  {
         _auth
             .createUserWithEmailAndPassword(email: Email, password: Password)
-            .then((value) {
+            .then((value) async {
           _auth.currentUser?.updateProfile(
             displayName: Name,
+
           );
+          String? _Uid = _auth.currentUser?.uid;
           _auth.currentUser?.linkWithPhoneNumber(MobileNo);
+
+             await  SetInfo(Uid:_Uid!).UpdateData(Name, Email, Gender);
 
           Navigator.pushNamed(context, 'LoginScreen',);
         });
@@ -211,6 +218,21 @@ class SignUpPage extends StatelessWidget {
                                     ),
                                     Container(
                                       padding: EdgeInsets.all(8.0),
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color:
+                                                      Colors.deepPurple))),
+                                      child: TextField(controller: Gndercontroller,
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: "Gender",
+                                            hintStyle: TextStyle(
+                                                color: Colors.grey[800])),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(8.0),
                                       child: TextField( controller: PhoneController,
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
@@ -218,7 +240,7 @@ class SignUpPage extends StatelessWidget {
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[800])),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),

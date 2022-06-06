@@ -29,7 +29,7 @@ class FlashChat extends StatelessWidget {
           'WelcomeScreen': (context) => Background(),
           'LoginScreen': (context) => LoginPage(),
           'Registrationscreen': (context) => SignUpPage(),
-          'ChatScreen': (context) => ChatScreen(),
+          // 'ChatScreen': (context) => ChatScreen(),
           'StartChat':(context)=>StartChat(),
         });
   }
