@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../consts/Dimension.dart';
+
 
 
 class LoginPage extends StatelessWidget {
@@ -46,7 +48,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Container(
-                  height: 400,
+                  height: Dim.Hight10*40.0,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('assets/images/background.png'),
@@ -56,9 +58,9 @@ class LoginPage extends StatelessWidget {
                   child: Stack(
                     children: <Widget>[
                       Positioned(
-                        left: 30,
-                        width: 80,
-                        height: 200,
+                        left: Dim.Hight10*3,
+                        width: Dim.Hight10*8,
+                        height:Dim.Hight10* 20,
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
@@ -68,9 +70,9 @@ class LoginPage extends StatelessWidget {
                         )),
 
                       Positioned(
-                        left: 140,
-                        width: 80,
-                        height: 150,
+                        left: Dim.Hight10*14,
+                        width: Dim.Hight10*8,
+                        height: Dim.Hight10*15,
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
@@ -80,10 +82,10 @@ class LoginPage extends StatelessWidget {
                         )),
 
                       Positioned(
-                        right: 40,
-                        top: 40,
-                        width: 80,
-                        height: 150,
+                        right: Dim.Hight10*4,
+                        top: Dim.Hight10*4,
+                        width: Dim.Hight10*8,
+                        height: Dim.Hight10*15,
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
@@ -94,9 +96,9 @@ class LoginPage extends StatelessWidget {
 
                       Positioned(
                         child:  Container(
-                          margin: EdgeInsets.only(top: 50),
+                          margin: EdgeInsets.only(top: Dim.Hight10*5.0),
                           child: Center(
-                            child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),),
+                            child: Text("Login", style: TextStyle(color: Colors.white, fontSize: Dim.Hight10*4, fontWeight: FontWeight.bold),),
                           ),
                         )),
 
@@ -106,14 +108,14 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(30.0),
+                  padding: EdgeInsets.all(Dim.Hight10*3),
                   child: Column(
                     children: <Widget>[
                      Container(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(Dim.Hight10*0.5),
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(Dim.Hight10),
                             boxShadow: [
                               BoxShadow(
                                   color: Color.fromRGBO(143, 148, 251, .2),
@@ -126,7 +128,7 @@ class LoginPage extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(Dim.Hight10*0.8),
                               decoration: BoxDecoration(
                                   border: Border(bottom: BorderSide(color: Colors.purple))
                               ),
@@ -151,11 +153,11 @@ class LoginPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 30,),
+                      SizedBox(height: Dim.Hight10*3.0,),
                        GestureDetector(onTap: ()  {Signin();
                        },
                          child: Container(
-                          height: 50,
+                          height: Dim.Hight10*5.0,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               gradient: LinearGradient(

@@ -1,4 +1,6 @@
+
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:chatvim/consts/Dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,55 +17,55 @@ class Background extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             children: <Widget>[
               WavyHeader(),
-              Positioned(top: 100,right: 60,
+              Positioned(top: Dim.Hight20*5,right: Dim.Hight30*2,
                 child: Row(
                   children: <Widget>[
                     Container(
                       child: Image.asset('images/logo.png'),
-                      height: 150,
+                      height: Dim.Hight10*15,
                     ),
                     TypewriterAnimatedTextKit(repeatForever: false,
                       text: ['ViMcHaT'],
                       textStyle: TextStyle(
                         color: Colors.blueGrey,
-                        fontSize: 45,
+                        fontSize: Dim.Hight10*4.5,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
                   ],
                 ),
               ),
-              Positioned(top: 225,right: 70,child: Container(height: 100,width: 100,
-                decoration: BoxDecoration(color: Colors.deepOrangeAccent,borderRadius: BorderRadius.circular(45),image: DecorationImage(image: AssetImage('assets/images/clock.png'))),
+              Positioned(top: Dim.Hight10*22.5,right: Dim.Hight10*7,child: Container(height: Dim.Hight20*5,width:Dim.Hight20*5 ,
+                decoration: BoxDecoration(color: Colors.deepOrangeAccent,borderRadius: BorderRadius.circular(Dim.Hight10*4.5),image: DecorationImage(image: AssetImage('assets/images/clock.png'))),
 
               ))
             ],
           ),
-          SizedBox(height: 50,),
+          SizedBox(height: Dim.Hight10*5.0,),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding:  EdgeInsets.all(5.0),
+                  padding:  EdgeInsets.all(Dim.Hight10*0.5),
                   child: GestureDetector( onTap: (){ Get.toNamed('LoginScreen',);
 
                   },
-                    child: Container(height: 60,width:250,decoration: BoxDecoration(gradient: LinearGradient(
+                    child: Container(height: Dim.Hight10*6.0,width:Dim.Width10*25.0,decoration: BoxDecoration(gradient: LinearGradient(
                         colors: orangeGradients,
                         begin: Alignment.topLeft,
-                        end: Alignment.center),borderRadius: BorderRadius.circular(30)),
-                      child:Center(child: Text('Login',style: TextStyle(letterSpacing: 2,fontSize: 25,color: Colors.white,fontWeight: FontWeight.w900),))),
+                        end: Alignment.center),borderRadius: BorderRadius.circular(Dim.Hight10*3.0)),
+                      child:Center(child: Text('Login',style: TextStyle(letterSpacing: 2,fontSize: Dim.Hight10*2.5,color: Colors.white,fontWeight: FontWeight.w900),))),
                   ),
                 ),
                 Padding(
                   padding:  EdgeInsets.all(5.0),
                   child: GestureDetector(onTap: ()=>Get.toNamed('Registrationscreen') ,
-                    child: Container(height: 60,width:250,decoration: BoxDecoration(gradient: LinearGradient(
+                    child: Container(height: Dim.Hight10*6.0,width:Dim.Width10*25.0,decoration: BoxDecoration(gradient: LinearGradient(
                         colors: orangeGradients,
                         begin: Alignment.topLeft,
-                        end: Alignment.center),borderRadius: BorderRadius.circular(30)),
-                      child:Center(child: Text('Signup',style: TextStyle(letterSpacing: 2,fontSize: 25,color: Colors.white,fontWeight: FontWeight.w900),))),
+                        end: Alignment.center),borderRadius: BorderRadius.circular(Dim.Hight10*3.0)),
+                      child:Center(child: Text('Signup',style: TextStyle(letterSpacing: 2,fontSize: Dim.Hight10*2.5,color: Colors.white,fontWeight: FontWeight.w900),))),
                   ),
                 ),
 
@@ -151,8 +153,8 @@ class CirclePurple extends StatelessWidget {
       offset: Offset(-70.0, 90.0),
       child: Material(
         color: Colors.purple,
-        child: Padding(padding: EdgeInsets.all(120)),
-        shape: CircleBorder(side: BorderSide(color: Colors.blueGrey, width: 15.0)),
+        child: Padding(padding: EdgeInsets.all(Dim.Hight10*12.0)),
+        shape: CircleBorder(side: BorderSide(color: Colors.blueGrey, width: Dim.Width10*1.5)),
       ),
     );
   }
@@ -165,8 +167,8 @@ class CircleBlue extends StatelessWidget {
       offset: Offset(0.0, 210.0),
       child: Material(
         color: Colors.indigo[800],
-        child: Padding(padding: EdgeInsets.all(140)),
-        shape: CircleBorder(side: BorderSide(color: Colors.deepOrangeAccent, width: 15.0)),
+        child: Padding(padding: EdgeInsets.all(Dim.Hight10*14.0)),
+        shape: CircleBorder(side: BorderSide(color: Colors.deepOrangeAccent, width: Dim.Width10*1.5)),
       ),
     );
   }

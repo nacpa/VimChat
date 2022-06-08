@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
+import '../consts/Dimension.dart';
+
 class StartChat extends StatelessWidget {
   const StartChat({Key? key}) : super(key: key);
 
@@ -18,20 +20,20 @@ class StartChat extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Lottie.network(
-                "https://assets9.lottiefiles.com/packages/lf20_fjv8qxqn.json"),
+            Lottie.asset(
+                "assets/Json/LottieChat.json"),
             GestureDetector( onTap: (){
-              Get.to(UserList());
+              Get.to(UserList(),transition: Transition.cupertino);
             },
               child: Container(
-                height: 60,
-                width: 230,
+                height: Dim.Hight10*6.0,
+                width: Dim.Hight10*23.0,
                 child: Center(
                     child: Text(
                   "Start Chatting",
                   style: TextStyle(
                       color: Colors.white.withOpacity(1),
-                      fontSize: 25,
+                      fontSize: Dim.Hight10*2.5,
                       letterSpacing: 1,
                       wordSpacing: 1,
                       fontWeight: FontWeight.bold),
@@ -44,7 +46,7 @@ class StartChat extends StatelessWidget {
                         spreadRadius: 0,
                         blurRadius: 12)
                   ],
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(Dim.Hight10*3.0),
                   color: Colors.greenAccent.shade400,
                 ),
               ),

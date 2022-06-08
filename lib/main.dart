@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'Screens/Auth/LoginPage.dart';
 import 'Screens/background.dart';
-import 'Screens/chat_screen.dart';
 
 
 
@@ -20,6 +19,7 @@ class FlashChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
         // home: ChatScreen(),
         home: Background(),

@@ -6,8 +6,8 @@ import '../Screens/chat_screen.dart';
 import '../consts/BubbleText.dart';
 
 class streamBuilder extends StatelessWidget {
-   streamBuilder({required this.ReceiverName}) ;
-   final String ReceiverName;
+  streamBuilder({required this.ReceiverName});
+  final String ReceiverName;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,10 @@ class streamBuilder extends StatelessWidget {
         List<BubbleText> MessagesWeigets = [];
 
         for (var message in Messages) {
-          if ( ( message.data()['User'] == loggedInUser.displayName && message.data()['Reciver'] == ReceiverName)|| (message.data()['User'] == ReceiverName && message.data()['Reciver'] == loggedInUser.displayName)) {
+          if ((message.data()['User'] == loggedInUser.displayName &&
+                  message.data()['Reciver'] == ReceiverName) ||
+              (message.data()['User'] == ReceiverName &&
+                  message.data()['Reciver'] == loggedInUser.displayName)) {
             final TextMessage = message.data()['Text'];
             final TextUser = message.data()['User'];
             final Texttime = message.data()['timestamp'];
@@ -44,7 +47,7 @@ class streamBuilder extends StatelessWidget {
             );
             MessagesWeigets.add(MessageWeiget);
           }
-        //
+          //
         }
         return Container(
           decoration: BoxDecoration(

@@ -78,6 +78,7 @@ flutter:
   assets:
     - images/
     - assets/images/
+    - assets/Json/
 
 
   #   - images/a_dot_burr.jpeg
