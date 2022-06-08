@@ -1,11 +1,8 @@
 import 'package:chatvim/Screens/chat_screen.dart';
-import 'package:chatvim/Streams/UserInfoStream.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
-import '../consts/Dimension.dart';
 
 class StartChat extends StatelessWidget {
   const StartChat({Key? key}) : super(key: key);
@@ -20,20 +17,20 @@ class StartChat extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Lottie.asset(
-                "assets/Json/LottieChat.json"),
+            Lottie.network(
+                "https://assets9.lottiefiles.com/packages/lf20_fjv8qxqn.json"),
             GestureDetector( onTap: (){
-              Get.to(UserList(),transition: Transition.cupertino);
+              Get.to(ChatScreen());
             },
               child: Container(
-                height: Dim.Hight10*6.0,
-                width: Dim.Hight10*23.0,
+                height: 60,
+                width: 230,
                 child: Center(
                     child: Text(
                   "Start Chatting",
                   style: TextStyle(
                       color: Colors.white.withOpacity(1),
-                      fontSize: Dim.Hight10*2.5,
+                      fontSize: 25,
                       letterSpacing: 1,
                       wordSpacing: 1,
                       fontWeight: FontWeight.bold),
@@ -46,7 +43,7 @@ class StartChat extends StatelessWidget {
                         spreadRadius: 0,
                         blurRadius: 12)
                   ],
-                  borderRadius: BorderRadius.circular(Dim.Hight10*3.0),
+                  borderRadius: BorderRadius.circular(30),
                   color: Colors.greenAccent.shade400,
                 ),
               ),
