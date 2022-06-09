@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/get_utils/get_utils.dart';
 
 import '../../consts/CustomSnackbar.dart';
@@ -48,8 +49,8 @@ class SignUpPage extends StatelessWidget {
             displayName: Name,
           );
           _auth.currentUser?.linkWithPhoneNumber(MobileNo);
+          Get.offNamed("LoginScreen");
 
-          Navigator.pushNamed(context, 'LoginScreen',);
         });
 
         CustomSnackBar(

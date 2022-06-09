@@ -1,6 +1,7 @@
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatvim/consts/Dimension.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,8 +49,22 @@ class Background extends StatelessWidget {
               children: [
                 Padding(
                   padding:  EdgeInsets.all(Dim.Hight10*0.5),
-                  child: GestureDetector( onTap: (){ Get.toNamed('LoginScreen',);
+                  child: GestureDetector( onTap: (){
 
+                    FirebaseAuth.instance
+                        .authStateChanges()
+                        .listen((User? user) {
+                      if (user == null) {
+                        print('User is currently signed out!');
+                        Get.toNamed('LoginScreen',
+                        );
+
+                      } else {
+                        print('User is signed in!');
+                        Get.toNamed('StartChat',
+                        );
+                      }
+                    });
                   },
                     child: Container(height: Dim.Hight10*6.0,width:Dim.Width10*25.0,decoration: BoxDecoration(gradient: LinearGradient(
                         colors: orangeGradients,

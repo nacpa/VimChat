@@ -1,5 +1,6 @@
 import 'package:chatvim/Screens/chat_screen.dart';
 import 'package:chatvim/Streams/UserInfoStream.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,8 @@ class StartChat extends StatelessWidget {
   const StartChat({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    
+
+
     return Scaffold(
       body: Container(
         height: double.maxFinite,

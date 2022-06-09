@@ -25,7 +25,6 @@ class _ChatScreenState extends State<ChatScreen> {
   _ChatScreenState({required this.ReceiverName});
 
   late String ReceiverName;
-
   final _controller = TextEditingController();
   final _auth = FirebaseAuth.instance;
   late String TextMessag;
@@ -37,7 +36,6 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
     GetCurrentUser();
   }
-
   void GetCurrentUser() async {
     try {
       final user = _auth.currentUser;
@@ -60,22 +58,9 @@ class _ChatScreenState extends State<ChatScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: Dim.Hight * 0.08,
+        toolbarHeight: Dim.Hight * 0.06,
         leading: null,
-        actions: <Widget>[
-          IconButton(
-              icon: const Icon(Icons.logout),
-              onPressed: () {
-                snackBAr = SnackBar(
-                    content: Text('LOGOUT SUCESSFULLY'),
-                    action: SnackBarAction(
-                      label: 'Undo',
-                      onPressed: () {},
-                    ));
-                _auth.signOut();
-                Get.offNamed("LoginScreen");
-              }),
-        ],
+       
         title: Text(ReceiverName),
         backgroundColor: Colors.blueGrey.shade800,
       ),
@@ -86,7 +71,7 @@ class _ChatScreenState extends State<ChatScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
-                height: size.height * 0.80,
+                height: size.height * 0.83,
                 child: streamBuilder(
                   ReceiverName: ReceiverName,
                 ),
@@ -99,7 +84,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             AssetImage('assets/images/chatBottomWallpaper.jpg'),
                         fit: BoxFit.fill)),
                 width: Dim.Width-100,
-                height: Dim.Hight * 0.0864,
+                height: Dim.Hight * 0.08,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
