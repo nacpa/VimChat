@@ -57,8 +57,11 @@ class BubbleText extends StatelessWidget {
           ),
           SizedBox(height: 2
             ,),
-          Row(mainAxisAlignment: MainAxisAlignment.end,
-            children: [ Text(
+
+          Row(mainAxisAlignment: itsMe?MainAxisAlignment.end:MainAxisAlignment.start,
+            children: [
+
+              Text(
             '$TextUser'.replaceAll(RegExp(r'@gmail.com'), ''),
             style:  TextStyle(color: Colors.grey, fontSize: 15),
           ),SizedBox(width: 5,),

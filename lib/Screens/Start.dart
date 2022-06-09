@@ -1,4 +1,5 @@
 import 'package:chatvim/Screens/chat_screen.dart';
+import 'package:chatvim/Streams/UserInfoStream.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,6 @@ import 'package:lottie/lottie.dart';
 
 class StartChat extends StatelessWidget {
   const StartChat({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     
@@ -17,10 +17,10 @@ class StartChat extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Lottie.network(
-                "https://assets9.lottiefiles.com/packages/lf20_fjv8qxqn.json"),
+            Lottie.asset(
+                "assets/Json/LottieChat.json"),
             GestureDetector( onTap: (){
-              Get.to(ChatScreen());
+              Get.to(UserList());
             },
               child: Container(
                 height: 60,
