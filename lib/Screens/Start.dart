@@ -20,7 +20,10 @@ class StartChat extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Lottie.asset(
-                "assets/Json/LottieChat.json"),
+                "assets/Json/LottieChat.json"
+              // "assets/Json/lf20_p5unhvxf.json"
+
+            ),
             GestureDetector( onTap: (){
               Get.to(UserList());
             },

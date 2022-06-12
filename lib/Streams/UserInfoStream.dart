@@ -38,10 +38,10 @@ class UserList extends StatelessWidget {
           return Center(
             child: Scaffold(
               body: Container(
-                  height: Dim.Hight10*5.0,
-                  width: Dim.Hight10*5.0,
+                  height: double.maxFinite,
+                  width: double.maxFinite,
                   color: Colors.white,
-                  child: Center(child: CircularProgressIndicator(color: Colors.orange,))),
+                  child: Center(child: Container(child: CircularProgressIndicator(color: Colors.orange,)))),
             ),
           );
         }

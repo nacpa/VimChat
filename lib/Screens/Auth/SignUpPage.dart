@@ -3,11 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/get_utils/get_utils.dart';
-
 import '../../consts/CustomSnackbar.dart';
 import '../../consts/Opacity.dart';
-
-
 
 class SignUpPage extends StatelessWidget {
   final _auth = FirebaseAuth.instance;
@@ -19,7 +16,6 @@ class SignUpPage extends StatelessWidget {
     var PassWordcontroller = TextEditingController();
     var Emailcontroller = TextEditingController();
     var Namecontroller = TextEditingController();
-
     void _Registration() {
       String Email = Emailcontroller.text.trim();
       String Password = PassWordcontroller.text.trim();
@@ -57,7 +53,6 @@ class SignUpPage extends StatelessWidget {
             "Welcome", "Signup Sucessfully", Colors.green, Colors.white);
       }
     }
-
     return Expanded(
       child: MaterialApp(
         home: SafeArea(

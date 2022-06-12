@@ -50,21 +50,8 @@ class Background extends StatelessWidget {
                 Padding(
                   padding:  EdgeInsets.all(Dim.Hight10*0.5),
                   child: GestureDetector( onTap: (){
-
-                    FirebaseAuth.instance
-                        .authStateChanges()
-                        .listen((User? user) {
-                      if (user == null) {
-                        print('User is currently signed out!');
-                        Get.toNamed('LoginScreen',
-                        );
-
-                      } else {
-                        print('User is signed in!');
-                        Get.toNamed('StartChat',
-                        );
-                      }
-                    });
+                    Get.toNamed('LoginScreen',
+                    );
                   },
                     child: Container(height: Dim.Hight10*6.0,width:Dim.Width10*25.0,decoration: BoxDecoration(gradient: LinearGradient(
                         colors: orangeGradients,

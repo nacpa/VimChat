@@ -61,10 +61,10 @@ class BubbleText extends StatelessWidget {
           Row(mainAxisAlignment: itsMe?MainAxisAlignment.end:MainAxisAlignment.start,
             children: [
 
-              Text(
-            '$TextUser'.replaceAll(RegExp(r'@gmail.com'), ''),
-            style:  TextStyle(color: Colors.grey, fontSize: 15),
-          ),SizedBox(width: 5,),
+          //     Text(
+          //   '$TextUser'.replaceAll(RegExp(r'@gmail.com'), ''),
+          //   style:  TextStyle(color: Colors.grey, fontSize: 15),
+          // ),SizedBox(width: 5,),
               Text("${TextTime.toDate().hour}"+":"+"${TextTime.toDate().minute}",style:  TextStyle(color: Colors.grey, fontSize: 15),)],)
 
         ],
