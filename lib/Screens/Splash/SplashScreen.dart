@@ -1,18 +1,14 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
-
   @override
   State<Splash> createState() => _SplashState();
 }
-
 class _SplashState extends State<Splash> with TickerProviderStateMixin {
 
   late AnimationController _controller;
@@ -22,7 +18,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     super.initState();
     _controller=AnimationController(vsync: this,duration: Duration(seconds: 4))..forward();
     _animation=CurvedAnimation(parent: _controller, curve: Curves.bounceOut);
-    Timer(Duration(seconds: 4,microseconds: 500),(){
+    Timer(Duration(seconds: 5,microseconds: 500),(){
       FirebaseAuth.instance
           .authStateChanges()
           .listen((User? user) {
@@ -35,14 +31,12 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
           );
         }
       });
-
     });}
   Widget build(BuildContext context) {
-
     return Scaffold(body: Container(color: Colors.grey[199],
       child: Center(child: ScaleTransition(scale: _animation,
       child: Container(height: 400,width: double.maxFinite,color: Colors.white,
-        child: Lottie.asset("assets/Json/lf20_p5unhvxf.json",fit: BoxFit.fill),))),
+        child: Lottie.asset("assets/Json/VimChatLoGo.json",fit: BoxFit.fill),))),
     ),);
   }
 }
