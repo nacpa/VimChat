@@ -1,16 +1,14 @@
-
 import 'package:chatvim/Screens/chat_screen.dart';
 import 'package:chatvim/consts/CustomSnackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../consts/Dimension.dart';
 
 final _FireData = FirebaseFirestore.instance.collection("Users");
 final _auth = FirebaseAuth.instance;
+
 class SetInfo {
   SetInfo({required this.Uid});
 
@@ -30,7 +28,6 @@ class UserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return StreamBuilder<QuerySnapshot>(
       stream: _FireData.snapshots(),
       builder: (context, snapshot) {
@@ -41,33 +38,40 @@ class UserList extends StatelessWidget {
                   height: double.maxFinite,
                   width: double.maxFinite,
                   color: Colors.white,
-                  child: Center(child: Container(child: CircularProgressIndicator(color: Colors.orange,)))),
+                  child: Center(
+                      child: Container(
+                          child: CircularProgressIndicator(
+                    color: Colors.orange,
+                  )))),
             ),
           );
         }
         final UserList = snapshot.data?.docs;
-        print(UserList?.length);
-        print(UserList?[0].data().toString());
         List<Map<String, String>> Users = [];
         UserList!.forEach((element) {
-
-
-          if(element['username']!=_auth.currentUser?.displayName){Users.add({
-            'Name': element['username'],
-            'Email': element['Email'],
-            'Gender': element['Gender'],
-          });}
-
+          if (element['username'] != _auth.currentUser?.displayName) {
+            Users.add({
+              'Name': element['username'],
+              'Email': element['Email'],
+              'Gender': element['Gender'],
+            });
+          }
         });
         return Scaffold(
-          appBar: AppBar(title: Text(_auth.currentUser!.displayName.toString()),
+          appBar: AppBar(
+            title: Text(_auth.currentUser!.displayName!.toUpperCase().toString()),
             backgroundColor: Colors.orange,
             shadowColor: Colors.white,
             actions: <Widget>[
               IconButton(
                   icon: const Icon(Icons.logout),
                   onPressed: () {
-                    CustomSnackBar("LogOut SucessFully", "${_auth.currentUser!.displayName.toString()}"+"LogOut SucessFully", Colors.greenAccent, Colors.black);
+                    CustomSnackBar(
+                        "LogOut SucessFully",
+                        "${_auth.currentUser!.displayName.toString()}" +
+                            "LogOut SucessFully",
+                        Colors.greenAccent,
+                        Colors.black);
                     _auth.signOut();
                     Get.offNamed("WelcomeScreen");
                   }),
@@ -80,54 +84,66 @@ class UserList extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (context, Pos) {
                   // print(Users[Pos]["Name"].toString());
-                  return
-                    GestureDetector(onTap: (){
-                    Get.to(ChatScreen(ReceiverName: Users[Pos]["Name"].toString()),transition: Transition.zoom);
-                  },
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(
+                          ChatScreen(
+                              ReceiverName: Users[Pos]["Name"].toString()),
+                              transition: Transition.zoom);
+                    },
                     child: Container(
-                      height: Dim.Hight10*7.0,
-                      width: Dim.Hight10*10.0,
-                      margin: EdgeInsets.all(Dim.Hight10*0.6),
+                      height: Dim.Hight10 * 7.0,
+                      width: Dim.Hight10 * 10.0,
+                      margin: EdgeInsets.all(Dim.Hight10 * 0.5),
                       child: Container(
                         margin: EdgeInsets.all(Dim.Hight10),
                         color: Colors.white,
-                        child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                                height: Dim.Hight10*8.0,
-                                width: Dim.Hight10*8.0,
-                                padding: EdgeInsets.all(Dim.Hight10*0.2),
-                                decoration: BoxDecoration(
+                                height: Dim.Hight10 * 8.0,
+                                width: Dim.Hight10 * 8.0,
+                                padding: EdgeInsets.all(Dim.Hight10 * 0.2),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey,
                                   image: DecorationImage(
                                       image: AssetImage(
                                           "assets/images/collaboration.png"),
                                       fit: BoxFit.fill),
                                 )),
-                            SizedBox(width: Dim.Hight10,),
-                            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,crossAxisAlignment: CrossAxisAlignment.start,
+                            SizedBox(
+                              width: Dim.Hight10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${Users[Pos]["Name"].toString()}",overflow: TextOverflow.ellipsis,maxLines: 1,
+                                  "${Users[Pos]["Name"].toString()}",
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
                                   style: TextStyle(
-                                      fontSize: Dim.Hight10*2.0,
+                                      fontSize: Dim.Hight10 * 1.8,
                                       fontStyle: FontStyle.normal,
                                       letterSpacing: 1,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.w400),
                                 ),
-
                               ],
                             )
                           ],
                         ),
                       ),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(Dim.Hight10*1.0),
+                          borderRadius:
+                              BorderRadius.circular(Dim.Hight10 * 1.0),
                           boxShadow: [
                             BoxShadow(
                                 offset: Offset(-3, 4),
                                 blurRadius: 4,
                                 spreadRadius: 2,
-                                color: Colors.grey.shade300,
+                                color: Colors.grey.shade100,
                                 blurStyle: BlurStyle.normal)
                           ],
                           color: Colors.white),

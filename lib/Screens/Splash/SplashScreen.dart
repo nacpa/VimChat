@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+
+import '../Start.dart';
+import '../background.dart';
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
   @override
@@ -23,11 +26,10 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
           .authStateChanges()
           .listen((User? user) {
         if (user == null) {
-          print('User is currently signed out!');
-          Get.toNamed('WelcomeScreen',
+          Get.off(Background(),transition: Transition.cupertino
           );
         } else {
-          Get.toNamed('StartChat',
+          Get.off(StartChat(),transition: Transition.cupertino
           );
         }
       });

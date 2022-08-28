@@ -22,7 +22,7 @@ class FlashChat extends StatelessWidget {
 
     return GetMaterialApp(
         // home: ChatScreen(),
-        home:Splash(),
+        home:const Splash(),
         // home: StartChat(),
         //initialRoute: 'WelcomeScreen',
         routes: {
@@ -30,7 +30,7 @@ class FlashChat extends StatelessWidget {
           'LoginScreen': (context) => LoginPage(),
           'Registrationscreen': (context) => SignUpPage(),
           // 'ChatScreen': (context) => ChatScreen(),
-          'StartChat':(context)=>StartChat(),
+          'StartChat':(context)=>const StartChat(),
         });
   }
 }
